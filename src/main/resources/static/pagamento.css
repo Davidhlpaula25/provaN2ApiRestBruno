@@ -1,0 +1,133 @@
+/* Estilo geral */
+body {
+    /* Estiliza o corpo da página (tag <body>) */
+    font-family: Arial, sans-serif;
+    /* Define a fonte */
+    background-color: #f4f4f4;
+    /* Cor de fundo da página */
+    margin: 0;
+    /* Remove margens */
+    padding: 0;
+    /* Remove preenchimento */
+    display: flex;
+    /* Ativa o modelo flexbox */
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    align-items: center;
+    /* Centraliza verticalmente */
+    height: 100vh;
+    /* Altura total da tela */
+}
+
+.pagamento-container {
+    /* Classe .pagamento-container */
+    background-color: white;
+    /* Cor de fundo branca */
+    padding: 30px;
+    /* Espaçamento interno */
+    border-radius: 10px;
+    /* Bordas arredondadas */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Sombra sutil */
+    width: 100%;
+    /* Largura total */
+    max-width: 500px;
+    /* Largura máxima */
+}
+
+h1 {
+    /* Estiliza a tag <h1> */
+    text-align: center;
+    /* Centraliza o texto */
+    margin-bottom: 20px;
+    /* Margem inferior */
+}
+
+form {
+    /* Estiliza a tag <form> */
+    display: flex;
+    /* Ativa flexbox dentro do formulário */
+    flex-direction: column;
+    /* Alinha elementos em coluna */
+}
+
+/* Estilo dos campos de formulário */
+.campo-container {
+    /* Classe .campo-container */
+    margin-bottom: 15px;
+    /* Margem inferior */
+}
+
+label {
+    /* Estiliza as tags <label> */
+    font-size: 1rem;
+    /* Tamanho da fonte */
+    margin-bottom: 5px;
+    /* Margem inferior */
+    display: block;
+    /* Exibe como bloco */
+}
+
+input[type="text"],
+/* Estiliza campos de texto */
+input[type="month"],
+/* Estiliza campos de mês */
+select {
+    /* Estiliza elementos <select> */
+    width: 100%;
+    /* Largura total */
+    padding: 10px;
+    /* Espaçamento interno */
+    margin-top: 5px;
+    /* Margem superior */
+    border: 1px solid #ccc;
+    /* Borda cinza clara */
+    border-radius: 5px;
+    /* Bordas arredondadas */
+    box-sizing: border-box;
+    /* Inclui bordas e preenchimento no tamanho total */
+}
+
+select {
+    /* Estiliza elementos <select> especificamente */
+    background-color: white;
+    /* Cor de fundo branca */
+    appearance: none;
+    /* Remove estilo padrão do navegador */
+    cursor: pointer;
+    /* Cursor de ponteiro */
+}
+
+.botao-container {
+    /* Classe .botao-container */
+    text-align: center;
+    /* Centraliza o texto */
+}
+
+.btn-finalizar {
+    /* Classe .btn-finalizar */
+    background-color: #28a745;
+    /* Cor de fundo verde */
+    color: white;
+    /* Texto branco */
+    padding: 10px 20px;
+    /* Espaçamento interno */
+    border: none;
+    /* Remove borda */
+    border-radius: 5px;
+    /* Bordas arredondadas */
+    font-size: 1rem;
+    /* Tamanho da fonte */
+    cursor: pointer;
+    /* Cursor de ponteiro */
+    width: 100%;
+    /* Largura total */
+    transition: background-color 0.3s ease;
+    /* Transição suave para a cor de fundo */
+}
+
+.btn-finalizar:hover {
+    /* Estilo ao passar o mouse sobre .btn-finalizar */
+    background-color: #218838;
+    /* Cor de fundo mais escura */
+}

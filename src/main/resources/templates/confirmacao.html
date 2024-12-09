@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação de Compra</title>
+    <link rel="stylesheet" href="confirmacao-compra.css">
+</head>
+
+<body>
+    <div class="confirmacao-container">
+        <h1>Compra Realizada com Sucesso!</h1>
+        <div class="detalhes-compra">
+            <h2>Detalhes da Compra:</h2>
+            <p><strong>Produto:</strong> <span id="nome-produto"></span></p>
+            <p><strong>Modelo:</strong> <span id="modelo-produto"></span></p>
+            <p><strong>Marca:</strong> <span id="marca-produto"></span></p>
+            <p><strong>Cor:</strong> <span id="cor-produto"></span></p>
+            <p><strong>Quantidade:</strong> 1</p> <!-- Quantidade fixa em 1 -->
+            <p><strong>Total:</strong> R$ <span id="total-produto"></span></p> <!-- Total separado -->
+        </div>
+
+        <div class="pagamento-detalhes">
+            <h2>Forma de Pagamento:</h2>
+            <p><strong>Bandeira do Cartão:</strong> <span id="bandeira-cartao"></span></p>
+            <p><strong>Número do Cartão:</strong> <span id="numero-cartao"></span></p>
+            <p><strong>Data de Expiração:</strong> <span id="data-expiracao"></span></p>
+            <p><strong>Código de Segurança:</strong> <span id="codigo-seguranca"></span></p>
+            <p><strong>Valor Total:</strong> R$ <span id="valor-total"></span></p> <!-- Valor total -->
+        </div>
+
+        <div class="mensagem-sucesso">
+            <p>Parabéns! Sua compra foi finalizada com sucesso. Obrigado por comprar conosco!</p>
+        </div>
+
+        <a href="/produtos" class="voltar-btn">Voltar à Página Inicial</a>
+    </div>
+
+    <script>
+        // Capturar dados da URL
+        const params = new URLSearchParams(window.location.search);
+        const nomeProduto = params.get('nome');
+        const modeloProduto = params.get('modelo');
+        const marcaProduto = params.get('marca');
+        const corProduto = params.get('cor');
+        let precoProduto = params.get('preco'); // Capturar o preço como string
+
+        // Verificação do preço
+        console.log('Preço recebido da URL:', precoProduto);
+
+        // Converter o preço para float
+        precoProduto = parseFloat(precoProduto.replace(',', '.'));
+
+        // Verificação após conversão
+        console.log('Preço convertido:', precoProduto);
+
+        const bandeiraCartao = params.get('bandeira');
+        const numeroCartao = params.get('numero');
+        const dataExpiracao = params.get('data');
+        const codigoSeguranca = params.get('codigo');
+
+        // Preencher os dados na tela de confirmação
+        document.getElementById('nome-produto').innerText = nomeProduto;
+        document.getElementById('modelo-produto').innerText = modeloProduto;
+        document.getElementById('marca-produto').innerText = marcaProduto;
+        document.getElementById('cor-produto').innerText = corProduto;
+
+        // Exibir o total (sem multiplicação por quantidade)
+        document.getElementById('total-produto').innerText = precoProduto.toFixed(2); // Exibir total formatado
+
+        document.getElementById('bandeira-cartao').innerText = bandeiraCartao.charAt(0).toUpperCase() + bandeiraCartao.slice(1); // Formata a bandeira do cartão
+        document.getElementById('numero-cartao').innerText = '**** **** **** ' + numeroCartao.slice(-4); // Exibe os últimos 4 dígitos do cartão
+        document.getElementById('data-expiracao').innerText = dataExpiracao; // Exibe a data de expiração
+        document.getElementById('codigo-seguranca').innerText = '***'; // Oculta o CVV por segurança
+        document.getElementById('valor-total').innerText = precoProduto.toFixed(2); // Valor total na seção de pagamento
+    </script>
+</body>
+
+</html>

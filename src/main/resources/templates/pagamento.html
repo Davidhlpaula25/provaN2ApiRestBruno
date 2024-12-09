@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento</title>
+    <link rel="stylesheet" href="pagamento.css">
+</head>
+<body>
+    <h1>Pagamento</h1>
+    <div class="carrinho">
+        <h2>Produtos no Carrinho</h2>
+        <ul id="produtosList"></ul>
+        <div class="total">
+            <h3>Total: R$ <span id="total"></span></h3>
+        </div>
+    </div>
+    <button onclick="finalizarPagamento()">Finalizar Pagamento</button>
+
+    <script>
+        // Função para finalizar o pagamento
+        function finalizarPagamento() {
+            alert("Pagamento finalizado com sucesso!");
+            // Aqui você pode adicionar a lógica para processar o pagamento
+        }
+
+        // Função para obter os parâmetros da URL
+        function getUrlParams() {
+            const params = {};
+            window.location.search.substring(1).split('&').forEach(param => {
+                const [key, value] = param.split('=');
+                params[key] = decodeURIComponent(value);
+            });
+            return params;
+        }
+
+        // Obtém os parâmetros da URL
+        const params = getUrlParams();
+        const carrinho = JSON.parse(params.carrinho);
+        const total = parseFloat(params.total);
+
+        // Exibe os produtos no carrinho
+        const produtosList = document.getElementById('produtosList');
+        carrinho.forEach(produto => {
+            const produtoItem = document.createElement('li');
+            produtoItem.innerHTML = `
+                <img src="/images/${produto.imagem}" alt="Imagem do Produto"/>
+                <div class="descricao">
+                    <h3>${produto.nome}</h3>
+                    <p><strong>Modelo:</strong> ${produto.modelo}</p>
+                    <p><strong>Marca:</strong> ${produto.marca}</p>
+                    <p><strong>Cor:</strong> ${produto.cor}</p>
+                    <p class="preco">Preço: R$ ${produto.preco}</p>
+                </div>
+            `;
+            produtosList.appendChild(produtoItem);
+        });
+
+        // Exibe o total
+        document.getElementById('total').innerText = total.toFixed(2);
+    </script>
+</body>
+</html>

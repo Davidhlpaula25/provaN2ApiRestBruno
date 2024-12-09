@@ -1,0 +1,103 @@
+body {
+    /* Estiliza o corpo da página (tag <body>) */
+    font-family: Arial, sans-serif;
+    /* Define a fonte */
+    background-color: #f4f4f4;
+    /* Cor de fundo da página */
+    margin: 0;
+    /* Remove margens */
+    padding: 0;
+    /* Remove preenchimento */
+}
+
+.confirmacao-container {
+    /* Classe .confirmacao-container */
+    width: 50%;
+    /* Largura de 50% da tela */
+    margin: 50px auto;
+    /* Margem superior de 50px e centraliza horizontalmente */
+    background-color: #fff;
+    /* Cor de fundo branca */
+    padding: 20px;
+    /* Espaçamento interno */
+    border-radius: 10px;
+    /* Bordas arredondadas */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Sombra sutil */
+    text-align: center;
+    /* Centraliza o texto */
+}
+
+h1 {
+    /* Estiliza a tag <h1> */
+    color: #4CAF50;
+    /* Cor do texto verde */
+    font-size: 2rem;
+    /* Tamanho da fonte */
+}
+
+.detalhes-compra,
+/* Classes .detalhes-compra e .pagamento-detalhes */
+.pagamento-detalhes {
+    text-align: left;
+    /* Alinha texto à esquerda */
+    margin: 20px 0;
+    /* Margem vertical de 20px */
+}
+
+.detalhes-compra h2,
+/* Estiliza <h2> dentro de .detalhes-compra e .pagamento-detalhes */
+.pagamento-detalhes h2 {
+    font-size: 1.5rem;
+    /* Tamanho da fonte */
+    color: #333;
+    /* Cor do texto cinza escuro */
+    border-bottom: 1px solid #ccc;
+    /* Borda inferior cinza clara */
+    padding-bottom: 10px;
+    /* Espaçamento inferior */
+}
+
+p {
+    /* Estiliza as tags <p> */
+    font-size: 1.1rem;
+    /* Tamanho da fonte */
+    color: #555;
+    /* Cor do texto cinza */
+}
+
+.mensagem-sucesso {
+    /* Classe .mensagem-sucesso */
+    background-color: #e0f7e9;
+    /* Cor de fundo verde claro */
+    padding: 15px;
+    /* Espaçamento interno */
+    border: 1px solid #4CAF50;
+    /* Borda verde */
+    margin: 20px 0;
+    /* Margem vertical de 20px */
+}
+
+.voltar-btn {
+    /* Classe .voltar-btn */
+    background-color: #4CAF50;
+    /* Cor de fundo verde */
+    color: #fff;
+    /* Texto branco */
+    padding: 10px 20px;
+    /* Espaçamento interno */
+    font-size: 1rem;
+    /* Tamanho da fonte */
+    border: none;
+    /* Remove borda */
+    border-radius: 5px;
+    /* Bordas arredondadas */
+    cursor: pointer;
+    /* Cursor de ponteiro */
+}
+
+.voltar-btn:hover {
+    /* Estilo ao passar o mouse sobre .voltar-btn */
+    background-color: #45a049;
+    /* Cor de fundo verde mais escuro */
+}

@@ -1,0 +1,261 @@
+body {
+    /* Estiliza o corpo da página (tag <body>) */
+    font-family: Arial, sans-serif;
+    /* Define a fonte */
+    background-color: #f4f4f4;
+    /* Cor de fundo da página */
+    display: flex;
+    /* Ativa o modelo flexbox */
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    align-items: center;
+    /* Centraliza verticalmente */
+    height: 100vh;
+    /* Altura total da tela */
+    margin: 0;
+
+}
+
+.container {
+    /* Classe .container */
+    background-color: white;
+    padding: 20px;
+    /* Espaçamento interno */
+    border-radius: 5px;
+    /* Bordas arredondadas */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Sombra sutil */
+    max-width: 800px;
+    /* Largura máxima */
+    width: 100%;
+    /* Largura total */
+}
+
+.produtos-container {
+    /* Classe .produtos-container */
+
+    width: 100%;
+    /* Ajuste da largura da tela */
+    max-width: 1180px;
+    /* Limite a largura máxima se necessário */
+    margin: 5 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1,
+h2 {
+    /* Seleciona as tags <h1> e <h2> */
+    text-align: center;
+}
+
+label {
+    /* Estiliza as tags <label> */
+    display: block;
+    /* Exibe como bloco */
+    margin: 10px 0 5px;
+}
+
+input {
+    /* Estiliza os campos <input> */
+
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+/*button { 
+    width: 48%;
+    padding: 10px;
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px 1%;
+}*/
+
+.button-container {
+    /* Classe .button-container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+form {
+    /* Estiliza a tag <form> */
+    margin: 0 10px;
+    /* Espaçamento entre os botões */
+}
+
+button {
+    /* Estiliza todos os botões */
+    padding: 10px 60px;
+    border: none;
+    /* Remove bordas padrão */
+    border-radius: 15px;
+    cursor: pointer;
+    /* Adicionar um cursor de mão ao passar o mouse */
+    width: 350px;
+    margin: 5px 1%;
+}
+
+button[type="submit"] {
+    /* Estilo para botões do tipo submit */
+    background-color: #28a745;
+    color: white;
+}
+
+button[type="submit2"] {
+    background-color: #007bff;
+    color: white;
+
+}
+
+.comprar-btn {
+    /* Classe .comprar-btn */
+    background-color: #28a745;
+    color: white;
+    /* Texto branco */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    /* Cursor de ponteiro */
+    font-size: 1em;
+    margin-top: 10px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    /* Transição suave */
+    align-self: center;
+    /* Centraliza dentro do container flex */
+}
+
+.comprar-btn:hover {
+    background-color: #218838;
+}
+
+.produto-lista {
+    /* Classe .produto-lista */
+    display: grid;
+    /* Ativa grid layout */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    /* Colunas responsivas */
+    gap: 20px;
+}
+
+.produto-item {
+    /* Classe .produto-item */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 30px, 30px, 30px, 30px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.produto-img {
+    /* Classe .produto-img */
+    width: 80px;
+    height: 150px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    /* Estiliza a tag <h2> */
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.detalhes {
+    /* Classe .detalhes */
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+.preco {
+    /* Classe .preco */
+    font-weight: bold;
+    color: #28a745;
+    margin-bottom: 10px;
+}
+
+.avaliacao {
+    /* Classe .avaliacao */
+    font-size: 1em;
+    color: #f39c12;
+}
+
+.hidden {
+    /* Classe .hidden */
+    display: none;
+}
+
+/* Criando Revelação de Senha */
+.password-container {
+    position: relative;
+    display: inline-block;
+    width: 91%;
+    padding: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    align-items: center;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    display: none; /* Oculto por padrão */
+    white-space: nowrap;
+}
+
+.password-container:hover .tooltip {
+    display: block; /* Mostra o balão ao passar o mouse */
+}
+.mensagem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 600px;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+.sucesso {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.erro {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+

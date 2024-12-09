@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Login - E-commerce de Celulares</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Login</h1>
+
+        <!-- Exibição de mensagens -->
+        <div>
+            <div th:if="${mensagemErro}" class="mensagem erro">
+                <p th:text="${mensagemErro}"></p>
+            </div>
+            <div th:if="${mensagem}" class="mensagem sucesso">
+                <p th:text="${mensagem}"></p>
+            </div>
+        </div>
+
+        <form id="login-form" action="/confirmarLogin" method="post">
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+
+            <div class="button-container">
+                <button type="submit">Confirmar</button>
+            </div>
+        </form>
+        <div class="button-container">
+            <form action="/cadastrar" method="get">
+                <button type="submit2">Cadastrar Novo Usuário</button>
+            </form>
+        </div>
+
+    </div>
+    <script>
+        setTimeout(() => {
+        const mensagens = document.querySelectorAll('.mensagem');
+        mensagens.forEach(mensagem => {
+            mensagem.style.transition = "opacity 0.5s ease"; // Animação suave
+            mensagem.style.opacity = "0"; // Torna a mensagem transparente
+            setTimeout(() => mensagem.remove(), 500); // Remove do DOM após a animação
+        });
+    }, 2000);
+    </script>
+</body>
+
+</html>

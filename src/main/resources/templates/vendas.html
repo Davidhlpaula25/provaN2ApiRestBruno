@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendas</title>
+    <link rel="stylesheet" href="vendas.css">
+    <!-- Font Awesome para os ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Barra superior -->
+    <div class="barra-superior">
+        <div class="icones">
+            <i class="fas fa-shopping-cart" id="iconeCarrinho" ></i> <!-- onclick="irParaCarrinho()" -->
+            <span id="numeroCarrinho" class="numero-carrinho">0</span> <!-- Número do carrinho -->
+            <i class="fas fa-user"></i> <!-- Ícone do usuário -->
+            <span id="usuarioNome">Bem-vindo, <span th:text="${primeiroNome}"></span></span>
+
+        </div>
+    </div>
+
+    <h1>Produtos à Venda</h1>
+    <div class="produtos">
+        <th:block th:each="produto : ${produtos}">
+            <div class="produto">
+                <img th:src="@{'/images/' + ${produto.imagem}}" alt="Imagem do Produto"/>
+                <div class="descricao">
+                    <h3 th:text="${produto.nome}"></h3>
+                    <p><strong>Modelo:</strong> <span th:text="${produto.modelo}"></span></p>
+                    <p><strong>Marca:</strong> <span th:text="${produto.marca}"></span></p>
+                    <p><strong>Cor:</strong> <span th:text="${produto.cor}"></span></p>
+                    <p class="preco" th:text="'Preço: R$ ' + ${produto.preco}"></p>
+                </div>
+                <div class="botoes">
+                    <button class="comprar" data-id="${produto.id}" data-nome="${produto.nome}" data-preco="${produto.preco}" onclick="adicionarAoCarrinho(this)">Comprar</button>
+                    <button class="adicionar-carrinho" 
+                            data-id="${produto.id}" 
+                            data-nome="${produto.nome}" 
+                            data-modelo="${produto.modelo}" 
+                            data-marca="${produto.marca}"
+                            data-cor="${produto.cor}"
+                            data-preco="${produto.preco}" 
+                            data-imagem="${produto.imagem}"
+                            onclick="adicionarAoCarrinho(this)">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+        </th:block>
+    </div>
+
+    <script>
+        // Recupera o carrinho do localStorage ou cria um carrinho vazio
+        let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+        
+
+        // Função para adicionar um produto ao carrinho
+        function adicionarAoCarrinho(button) {
+            const produtoId = button.getAttribute('data-id');
+            const nome = button.getAttribute('data-nome');
+            const modelo = button.getAttribute('data-modelo');
+            const marca = button.getAttribute('data-marca');
+            const cor = button.getAttribute('data-cor');
+            const preco = button.getAttribute('data-preco');
+            const imagem = button.getAttribute('data-imagem');
+
+            const produto = { 
+                id: produtoId, 
+                nome: nome, 
+                modelo: modelo, 
+                marca: marca, 
+                cor: cor, 
+                preco: parseFloat(preco), 
+                imagem: imagem 
+            };
+
+            // Adiciona o produto ao carrinho
+            carrinho.push(produto);
+
+            // Atualiza o número de itens no carrinho
+            atualizarNumeroCarrinho();
+
+            // Armazena o carrinho no localStorage
+            localStorage.setItem('carrinho', JSON.stringify(carrinho));
+        }
+
+        // Função para atualizar o número de itens no carrinho
+        function atualizarNumeroCarrinho() {
+            document.getElementById('numeroCarrinho').innerText = carrinho.length;
+        }
+
+        // Função para ir para a página de pagamento
+        function irParaCarrinho() {
+            // Calcula o total do carrinho
+            const total = carrinho.reduce((acc, produto) => acc + produto.preco, 0);
+
+            // Cria uma URL com os dados do carrinho e o total
+            const url = `pagamento.html?carrinho=${encodeURIComponent(JSON.stringify(carrinho))}&total=${total.toFixed(2)}`;
+
+            // Redireciona para a página de pagamento
+            window.location.href = url;
+        }
+
+        // Função para limpar o carrinho
+        function limparCarrinho() {
+            // Limpa o carrinho do localStorage
+            localStorage.removeItem('carrinho');
+            carrinho = []; // Reseta o carrinho no código
+
+            // Atualiza o número de itens no carrinho
+            atualizarNumeroCarrinho();
+        }
+
+        // Atualiza o número de itens ao carregar a página
+        atualizarNumeroCarrinho();
+    </script>
+    <button onclick="limparCarrinho()">Limpar Carrinho</button>
+</body>
+</html>

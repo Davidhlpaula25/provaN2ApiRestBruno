@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Cadastrar Novo Usuário</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Cadastrar Novo Usuário</h1>
+
+        <div th:if="${messagemErro}" class="mensagem erro">
+            <span th:text="${messagemErro}"></span>
+        </div>
+        
+        <div th:if="${message}" class="mensagem sucesso">
+            <span th:text="${message}"></span>
+        </div>
+        
+        <form id="cadastro-form" action="/salvar" method="post">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <div class="password-container">
+                <input type="password" id="password" name="password" required oninput="checkPasswords()">
+                <span class="toggle-password" onclick="togglePassword('password', this)">👁️</span>
+                <div class="tooltip" id="passwordTooltip">Digite sua senha.</div>
+            </div>
+
+            <label for="passwordConfirmation">Password Confirmation:</label>
+            <div class="password-container">
+                <input type="password" id="passwordConfirmation" name="passwordConfirmation" required oninput="checkPasswords()">
+                <span class="toggle-password" onclick="togglePassword('passwordConfirmation', this)">👁️</span>
+                <div class="tooltip" id="confirmationTooltip">Confirme sua senha.</div>
+            </div>
+
+            <label for="birthDate">Data de Nascimento:</label>
+            <input type="date" id="birthDate" name="birthDate" required>
+
+            <label for="endereco">Endereço:</label>
+            <input type="text" id="logradouro" name="logradouro" placeholder="Logradouro" required>
+            <input type="number" id="number" name="number" placeholder="Número" required>
+            <input type="text" id="quadra" name="quadra" placeholder="Quadra">
+            <input type="text" id="lote" name="lote" placeholder="Lote">
+            <input type="text" id="bairro" name="bairro" placeholder="Bairro" required>
+            <input type="text" id="cep" name="cep" placeholder="CEP" required>
+            <input type="text" id="cidade" name="cidade" placeholder="Cidade" required>
+            <input type="text" id="estado" name="estado" placeholder="Estado" required>
+
+            <div class="button-container">
+                <button type="submit" id="salvar-btn" disabled>Salvar</button>
+            </div>
+        </form>
+        <form action="/login" method="get">
+            <div class="button-container">
+                <button type="submit">Voltar ao Login</button>
+            </div>
+        </form>
+        <div id="success-message" style="display: none; color: green;">
+            <h2>Usuário cadastrado com sucesso!</h2>
+        </div>
+    </div>
+    <script>
+        function togglePassword(inputId, icon) {
+            const input = document.getElementById(inputId);
+            if (input.type === "password") {
+                input.type = "text";
+                icon.textContent = "🙈"; // Ícone para "ocultar senha"
+            } else {
+                input.type = "password";
+                icon.textContent = "👁️"; // Ícone para "mostrar senha"
+            }
+        }
+        function checkPasswords() {
+            const password = document.getElementById('password').value;
+            const passwordConfirmation = document.getElementById('passwordConfirmation').value;
+
+            const passwordTooltip = document.getElementById('passwordTooltip');
+            const confirmationTooltip = document.getElementById('confirmationTooltip');
+            const salvarBtn = document.getElementById('salvar-btn');
+
+            if (passwordConfirmation === "") {
+                confirmationTooltip.textContent = "Confirme sua senha.";
+                salvarBtn.disabled = true;
+                return;
+            }
+
+            if (password === passwordConfirmation) {
+                confirmationTooltip.textContent = "As senhas são idênticas.";
+                confirmationTooltip.style.backgroundColor = "green";
+                salvarBtn.disabled = false;
+            } else {
+                confirmationTooltip.textContent = "As senhas não coincidem.";
+                confirmationTooltip.style.backgroundColor = "red";
+                salvarBtn.disabled = true;
+            }
+        }
+        function showSuccessMessage() {
+            const successMessage = document.getElementById('success-message');
+            successMessage.style.display = 'block';
+            setTimeout(function() {
+                window.location.href = '/login'; // Redirecionar para a página de login
+            }, 2000); // Aguardar 2 segundos antes de redirecionar
+        }
+        // Aguarda 5 segundos (5000ms) e remove a mensagem
+    setTimeout(() => {
+        const mensagens = document.querySelectorAll('.mensagem');
+        mensagens.forEach(mensagem => {
+            mensagem.style.transition = "opacity 0.5s ease"; // Animação suave
+            mensagem.style.opacity = "0"; // Torna a mensagem transparente
+            setTimeout(() => mensagem.remove(), 500); // Remove do DOM após a animação
+        });
+    }, 2000);
+
+        document.getElementById('cadastro-form').onsubmit = function(event) {
+    event.preventDefault(); // Previne o envio do formulário para validar e manipular os dados
+    // Agora, pode mostrar a mensagem de sucesso ou enviar o formulário
+    showSuccessMessage();
+    // Submete o formulário após a validação
+    event.target.submit();
+};
+
+    </script>
+</body>
+
+</html>
